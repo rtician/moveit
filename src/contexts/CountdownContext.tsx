@@ -26,6 +26,8 @@ export function CountdownProvider ({ children }: CountdownProviderProps) {
     const minutes = Math.floor(time / 60);
     const seconds = time % 60;
 
+    let countdownTimeout: NodeJS.Timeout;
+
     function startCountdown() {
         setIsActive(true);
     }
@@ -34,6 +36,7 @@ export function CountdownProvider ({ children }: CountdownProviderProps) {
         clearTimeout(countdownTimeout);
         setIsActive(false);
         setTime(0.1 * 60);
+        setHasFinished(false);
     }
 
     function decreaseTime() {
